@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import cors from 'cors';
+import mongoose from 'mongoose';
 
 // 創建 Express 應用
 const app = express();
@@ -27,3 +28,7 @@ server.listen(8080, () => {
 })
 
 const MONGO_URL = 'mongodb+srv://musicwolf731:ZXtmUqwQvpu1oNdR@cluster0.6d8iyrx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+
+mongoose.Promise = Promise;
+mongoose.connect(MONGO_URL);
+mongoose.connection.on('error', (error:Error) => console.log(error))
