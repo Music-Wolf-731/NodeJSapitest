@@ -1,3 +1,5 @@
+//用於加密
+
 import crypto from 'crypto';
 
 const SECRET = 'ANTONIO-REST-API';

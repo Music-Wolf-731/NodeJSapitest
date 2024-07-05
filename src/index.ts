@@ -6,6 +6,8 @@ import compression from 'compression';
 import cors from 'cors';
 import mongoose from 'mongoose';
 
+import router from './router';
+
 // 創建 Express 應用
 const app = express();
 
@@ -32,3 +34,10 @@ const MONGO_URL = 'mongodb+srv://musicwolf731:ZXtmUqwQvpu1oNdR@cluster0.6d8iyrx.
 mongoose.Promise = Promise;
 mongoose.connect(MONGO_URL);
 mongoose.connection.on('error', (error:Error) => console.log(error))
+
+// 處理成功連接提示，這部份教學中沒有
+mongoose.connection.once('open', () => {
+    console.log('Connected to MongoDB database');
+});
+
+app.use('/' , router());
